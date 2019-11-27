@@ -1,6 +1,5 @@
 package com.julian.demo.model;
 
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,50 +7,50 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
-@NoArgsConstructor
+
+
 @Entity
+@NoArgsConstructor
+@Data
 @Table(name="category")
 public class Category {
 
-	public Category(Long id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
 
 	@Id
 	private Long id;
+	//Auto, House, ...
+	
+	@NonNull
 	private String name;
 	
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
 
 	//Many categories can be connected to one user.
-	@ManyToOne(cascade=CascadeType.PERSIST)//Whatever happens on the left table happens on the right table.Si existe por lo menos un usuario existiran categorias y no hay categorias sin usuarios. 
-	private Set<User> user;
-
-	public Set<User> getUser() {
-		return user;
-	}
-
-	public void setUser(Set<User> user) {
-		this.user = user;
-	}
+	//Whatever happens on the left table happens on the right table.Si existe por lo menos un usuario existiran categorias y no hay categorias sin usuarios: 
+	
+	
+	
+	/*
+	 * @ManyToOne(cascade=CascadeType.PERSIST) private User user;
+	 */
+	 
 	
 	
 }
